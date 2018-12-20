@@ -50,5 +50,8 @@
     <ClInclude Include="iTerminal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Help.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@
 
 class Terminal : public iTerminal{
 private:
-	int menuSize;
+	const int menuSize = 4;
 	void printMenu(int);
 	std::string infoText;
 

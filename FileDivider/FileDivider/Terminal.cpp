@@ -3,11 +3,14 @@
 #include "Divider.h"
 #include "Builder.h"
 #include "Config.h"
+#include "Help.h"
 
 
 void Terminal::printMenu(int cursorPosition) {
 	std::string menuPoints[] = { "  1. Divide\n",
-								"  2. Build\n" };
+								"  2. Build\n", 
+								"  3. Help\n",
+								"  4. Exit\n"};
 
 	menuPoints[cursorPosition][0] = '>';
 
@@ -18,9 +21,8 @@ void Terminal::printMenu(int cursorPosition) {
 
 void Terminal::run() {
 	int cp = 0;
-	menuSize = 2;
 	Config cfg = Config();
-	infoText = "Some info\n \n";
+	infoText = "FileDivider v0.3 by Dmitry Martynov\n\n";
 	std::string infoTextBackup;
 	
 	cfg.loadConfig(this);
@@ -54,6 +56,12 @@ void Terminal::run() {
 				Builder builder = Builder();
 				builder.run(this, & cfg);
 				break;
+			case 2:
+				print(help);
+				system("pause");
+				break;
+			case 3:
+				return;
 			}
 			infoText = infoTextBackup;
 		}

@@ -25,6 +25,7 @@ void Divider::run(iTerminal * terminal, Config * cfg) {
 		inputFile.open(inputFileName);
 
 		if (inputFile) {
+			terminal->print("File found and loaded\n\n");
 			divide(terminal, cfg, inputFileName);
 			inputFile.close();
 			break;
@@ -37,6 +38,7 @@ void Divider::run(iTerminal * terminal, Config * cfg) {
 		terminal->printInfo();
 
 	}
+	system("pause");
 }
 
 void Divider::divide(iTerminal * terminal, Config * cfg, std::string inputFileName) {
@@ -48,7 +50,21 @@ void Divider::divide(iTerminal * terminal, Config * cfg, std::string inputFileNa
 
 	buffer = new char[cfg->bufferSize()];
 
-	std::experimental::filesystem::create_directory("FD_output");
+	if (std::experimental::filesystem::exists("FD_output")) {
+		terminal->print("FD_output directory found\n\n");
+	}
+	else {
+		if (std::experimental::filesystem::create_directory("FD_output")) {
+			terminal->print("FD_output directory created\n\n");
+		}
+		else {
+			terminal->print("Failed to create FD_output directory\n\n");
+			system("pause");
+			return;
+		}
+	}
+
+	
 
 	std::string outputFileName;
 	for (unsigned i = 0; i < cfg->fileQuantity(); i++) {
@@ -73,6 +89,8 @@ void Divider::divide(iTerminal * terminal, Config * cfg, std::string inputFileNa
 		else { looper = 0; }
 
 	}
+
+	terminal->print("File has been divided successfully\n\n");
 
 	inputFile.close();
 

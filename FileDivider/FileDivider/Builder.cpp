@@ -4,7 +4,8 @@
 #include "Config.h"
 
 void Builder::run(iTerminal * terminal, Config * cfg) {
-	terminal->adToInfo("**Builder launched**\nInput files must be:\n-Named \"0.txt\" \"1.txt\" etc.\n-Placed in \"FD_Input\" directory\n");
+	terminal->adToInfo("**Builder launched**\nInput files must be:\n-Named \"0.txt\", \"1.txt\" etc.\n-Placed in \"FD_Input\" directory\n");
+	terminal->adToInfo("Make shure to use the same configuration file, that was used to divide your file!\n\n");
 	system("cls");
 	terminal->printInfo();
 	system("pause");
@@ -16,10 +17,18 @@ void Builder::run(iTerminal * terminal, Config * cfg) {
 
 void Builder::build(iTerminal * terminal, Config * cfg) {
 	auto inputFiles = std::vector<std::ifstream>();
-	std::ofstream outputFile("FD_out.txt", std::ios::binary);
+	std::ofstream outputFile;
 	char * buffer;
 
 	buffer = new char[cfg->bufferSize()];
+
+	if (std::experimental::filesystem::exists("FD_intput")) {
+		terminal->print("FD_input directory found\n\n");
+	}
+	else {
+		terminal->print("FD_input directory not found\n\n");
+		return;
+	}
 
 	std::string inputFileName;
 	for (unsigned i = 0; i < cfg->fileQuantity(); i++) {
@@ -28,6 +37,8 @@ void Builder::build(iTerminal * terminal, Config * cfg) {
 	}
 
 	terminal->print("Input files loaded\n");
+
+	outputFile.open("FD_out.txt", std::ios::binary);
 
 	std::string s;
 	std::ifstream cfgFile;
@@ -55,6 +66,8 @@ void Builder::build(iTerminal * terminal, Config * cfg) {
 
 	}
 
+	terminal->print("File built successfully\n");
+	
 	outputFile.close();
 
 	for (unsigned i = 0; i < cfg->fileQuantity(); i++) {

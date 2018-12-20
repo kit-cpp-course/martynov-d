@@ -125,6 +125,7 @@
     <ClInclude Include="Builder.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="Divider.h" />
+    <ClInclude Include="Help.h" />
     <ClInclude Include="iTerminal.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Terminal.h" />
