@@ -1,0 +1,5 @@
+Do NOT change anything in this file except numbers
+File_Quantity=2
+Buffer_Size=13
+360
+360
