@@ -4,7 +4,7 @@
 #include "Config.h"
 
 void Builder::run(iTerminal * terminal, Config * cfg) {
-	terminal->adToInfo("**Builder launched**\nInput files must be:\n-Named \"0.txt\", \"1.txt\" etc.\n-Placed in \"FD_Input\" directory\n");
+	terminal->adToInfo("**Builder launched**\nInput files must be:\n-Named \"0.txt\", \"1.txt\" etc.\n-Placed in \"FD_input\" directory\n");
 	terminal->adToInfo("Make shure to use the same configuration file, that was used to divide your file!\n\n");
 	system("cls");
 	terminal->printInfo();
@@ -20,9 +20,11 @@ void Builder::build(iTerminal * terminal, Config * cfg) {
 	std::ofstream outputFile;
 	char * buffer;
 
+	std::string outputFileExtension;
+
 	buffer = new char[cfg->bufferSize()];
 
-	if (std::experimental::filesystem::exists("FD_intput")) {
+	if (std::experimental::filesystem::exists("FD_input")) {
 		terminal->print("FD_input directory found\n\n");
 	}
 	else {
@@ -36,9 +38,7 @@ void Builder::build(iTerminal * terminal, Config * cfg) {
 		inputFiles.push_back(std::ifstream(inputFileName, std::ios::binary));
 	}
 
-	terminal->print("Input files loaded\n");
-
-	outputFile.open("FD_out.txt", std::ios::binary);
+	terminal->print("Input files loaded\n\n");
 
 	std::string s;
 	std::ifstream cfgFile;
@@ -48,8 +48,12 @@ void Builder::build(iTerminal * terminal, Config * cfg) {
 	getline(cfgFile, s);
 	getline(cfgFile, s);
 	getline(cfgFile, s);
+	outputFileExtension = s;
+	getline(cfgFile, s);
 	int buffsCount = std::stoi(s);
 	cfgFile.close();
+
+	outputFile.open("FD_out" + outputFileExtension, std::ios::binary);
 
 	int looper = 0;
 	for(buffsCount; buffsCount >= 0; buffsCount--){

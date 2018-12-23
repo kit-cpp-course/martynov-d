@@ -46,6 +46,8 @@ void Divider::divide(iTerminal * terminal, Config * cfg, std::string inputFileNa
 	std::ifstream inputFile;
 	char * buffer;
 
+	std::string inputFileExtension = inputFileName.substr(inputFileName.rfind("."));
+
 	inputFile.open(inputFileName, std::ios::binary);
 
 	buffer = new char[cfg->bufferSize()];
@@ -115,6 +117,6 @@ void Divider::divide(iTerminal * terminal, Config * cfg, std::string inputFileNa
 
 	std::ofstream cfgFileO;
 	cfgFileO.open("cfg.txt");
-	cfgFileO << s << buffsCount << std::endl;
+	cfgFileO << s << inputFileExtension << std::endl << buffsCount << std::endl;
 	cfgFileO.close();
 }
