@@ -4,6 +4,7 @@
 
 unsigned Config::fileQuantity() { return _fileQuantity; }
 unsigned Config::bufferSize() { return _bufferSize; }
+bool Config::newConfig() { return _newConfig; }
 
 void Config::loadConfig(iTerminal * terminal) {
 
@@ -22,13 +23,15 @@ void Config::loadConfig(iTerminal * terminal) {
 		_bufferSize = std::stoi(s);
 		
 		s = "Cfg loaded\n";
+
+		_newConfig = false;
 	}
 	else
 	{
 		terminal->adToInfo("Cfg file not found\nCreating cfg file by default\n");
 		setDefaultConfig();
 		saveConfig();
-
+		_newConfig = true;
 		s = "";
 	}
 
@@ -44,7 +47,7 @@ void Config::saveConfig() {
 	fout.open("cfg.txt");
 	fout << "Do NOT change anything in this file except numbers\n";
 	fout << "File_Quantity=" << _fileQuantity << "\nBuffer_Size=" << _bufferSize << std::endl;
-	fout << "For building only.DO NOT CHANGE ANYTHING BELOW\n";
+	fout << "For building only.DO NOT CHANGE ANYTHING BELOW\n-\n";
 	fout.close();
 }
 

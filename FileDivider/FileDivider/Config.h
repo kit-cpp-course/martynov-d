@@ -7,6 +7,7 @@ class Config {
 private:
 	unsigned _fileQuantity;
 	unsigned _bufferSize;
+	bool _newConfig;
 
 public:
 	void loadConfig(iTerminal *);
@@ -14,5 +15,6 @@ public:
 	void setDefaultConfig();
 	unsigned fileQuantity();
 	unsigned bufferSize();
+	bool newConfig();
 
 };

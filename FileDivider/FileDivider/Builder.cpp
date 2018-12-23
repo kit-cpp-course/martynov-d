@@ -4,14 +4,24 @@
 #include "Config.h"
 
 void Builder::run(iTerminal * terminal, Config * cfg) {
+	
 	terminal->adToInfo("**Builder launched**\nInput files must be:\n-Named \"0.txt\", \"1.txt\" etc.\n-Placed in \"FD_input\" directory\n");
 	terminal->adToInfo("Make shure to use the same configuration file, that was used to divide your file!\n\n");
 	system("cls");
 	terminal->printInfo();
 	system("pause");
 
-	build(terminal, cfg);
-
+	try {
+		build(terminal, cfg);
+	}
+	catch(int i){
+		if (i == 1) {
+			terminal->print("Configuration file does not contain necessary information\n");
+			terminal->print("!!!Make shure to use the same configuration file, that was used to divide your file!!!\n\n");
+		}
+	}
+	
+	
 	system("pause");
 }
 
@@ -48,10 +58,15 @@ void Builder::build(iTerminal * terminal, Config * cfg) {
 	getline(cfgFile, s);
 	getline(cfgFile, s);
 	getline(cfgFile, s);
+	if (s == "-") {
+		throw 1;
+		return;
+	}
 	outputFileExtension = s;
 	getline(cfgFile, s);
 	int buffsCount = std::stoi(s);
 	cfgFile.close();
+	
 
 	outputFile.open("FD_out" + outputFileExtension, std::ios::binary);
 
