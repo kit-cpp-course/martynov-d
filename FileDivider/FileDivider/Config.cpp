@@ -4,7 +4,6 @@
 
 unsigned Config::fileQuantity() { return _fileQuantity; }
 unsigned Config::bufferSize() { return _bufferSize; }
-bool Config::newConfig() { return _newConfig; }
 
 void Config::loadConfig(iTerminal * terminal) {
 
@@ -23,15 +22,12 @@ void Config::loadConfig(iTerminal * terminal) {
 		_bufferSize = std::stoi(s);
 		
 		s = "Cfg loaded\n";
-
-		_newConfig = false;
 	}
 	else
 	{
 		terminal->adToInfo("Cfg file not found\nCreating cfg file by default\n");
 		setDefaultConfig();
 		saveConfig();
-		_newConfig = true;
 		s = "";
 	}
 

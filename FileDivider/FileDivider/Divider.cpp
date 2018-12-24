@@ -70,7 +70,7 @@ void Divider::divide(iTerminal * terminal, Config * cfg, std::string inputFileNa
 
 	std::string outputFileName;
 	for (unsigned i = 0; i < cfg->fileQuantity(); i++) {
-		outputFileName = "FD_output/" + std::to_string(i) + ".txt";
+		outputFileName = "FD_output/" + std::to_string(i) + ".fdblock";
 		outputFiles.push_back(std::ofstream(outputFileName, std::ios::binary));
 	}
 

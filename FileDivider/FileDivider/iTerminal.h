@@ -1,7 +1,11 @@
 #pragma once
 #include "stdafx.h"
 
-
+/**
+* Control class interface
+* Implements user communication
+* Manages other classes
+**/
 class iTerminal {
 public:
 	virtual void run() = 0;

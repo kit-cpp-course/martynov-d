@@ -5,7 +5,7 @@
 
 void Builder::run(iTerminal * terminal, Config * cfg) {
 	
-	terminal->adToInfo("**Builder launched**\nInput files must be:\n-Named \"0.txt\", \"1.txt\" etc.\n-Placed in \"FD_input\" directory\n");
+	terminal->adToInfo("**Builder launched**\nInput files must be:\n-Named \"0.fdblock\", \"1.fdblock\" etc.\n-Placed in \"FD_input\" directory\n");
 	terminal->adToInfo("Make shure to use the same configuration file, that was used to divide your file!\n\n");
 	system("cls");
 	terminal->printInfo();
@@ -44,7 +44,7 @@ void Builder::build(iTerminal * terminal, Config * cfg) {
 
 	std::string inputFileName;
 	for (unsigned i = 0; i < cfg->fileQuantity(); i++) {
-		inputFileName = "FD_input/" + std::to_string(i) + ".txt";
+		inputFileName = "FD_input/" + std::to_string(i) + ".fdblock";
 		inputFiles.push_back(std::ifstream(inputFileName, std::ios::binary));
 	}
 

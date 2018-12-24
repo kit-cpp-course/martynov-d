@@ -5,6 +5,7 @@
 #include "Config.h"
 #include "Help.h"
 
+const std::string versionInfo = "FileDivider v0.6 by Dmitry Martynov\n\n";
 
 void Terminal::printMenu(int cursorPosition) {
 	std::string menuPoints[] = { "  1. Divide\n",
@@ -19,10 +20,11 @@ void Terminal::printMenu(int cursorPosition) {
 	}
 }
 
+
 void Terminal::run() {
 	int cp = 0;
 	Config cfg = Config();
-	infoText = "FileDivider v0.3 by Dmitry Martynov\n\n";
+	infoText = versionInfo;
 	std::string infoTextBackup;
 	
 	cfg.loadConfig(this);
@@ -57,6 +59,8 @@ void Terminal::run() {
 				builder.run(this, & cfg);
 				break;
 			case 2:
+				system("cls");
+				print(versionInfo);
 				print(help);
 				system("pause");
 				break;
@@ -72,17 +76,21 @@ void Terminal::run() {
 	}
 }
 
+
 void Terminal::adToInfo(std::string s) {
 	infoText += s;
 }
+
 
 void Terminal::print(std::string s) {
 	std::cout << s;
 }
 
+
 void Terminal::printInfo() {
 	print(infoText);
 }
+
 
 void Terminal::print(char * c, unsigned length) {
 	for (unsigned i = 0; i < length; i++) {
