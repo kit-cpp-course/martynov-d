@@ -1,3 +1,5 @@
+/* Config.h */
+
 #pragma once
 #include "stdafx.h"
 
@@ -21,13 +23,13 @@ public:
 	/* Saves configurations to cfg.txt file */
 	void saveConfig();
 
-	/* Sets _fileQuantity and _bufferSize by default */
+	/* Sets default values to configurations*/
 	void setDefaultConfig();
 
-	/* _fileQuantity getter */
+	/* Returns .fdblock file quantity */
 	unsigned fileQuantity();
 
-	/* _bufferSize getter */
+	/* Returns buffer size */
 	unsigned bufferSize();
 
 };

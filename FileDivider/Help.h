@@ -1,6 +1,9 @@
+/* Help.h */
+
 #pragma once
 #include "stdafx.h"
 
+/* Contains help information */
 std::string help = "\
 This program splits input file into blocks to protect input file infrormation.\n\n\
 >>CONFIGURATIONS<<\n\

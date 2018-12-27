@@ -1,9 +1,12 @@
+/* Builder.h */
+
 #pragma once
 #include "stdafx.h"
 
 class iTerminal;
 class Config;
 
+/* Manages file restortion from .fdblock files*/
 class Builder {
 private:
 	/**

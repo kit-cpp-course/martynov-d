@@ -1,3 +1,5 @@
+/* Config.cpp */
+
 #include "stdafx.h"
 #include "Config.h"
 #include "iTerminal.h"

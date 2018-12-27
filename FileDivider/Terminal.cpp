@@ -1,3 +1,5 @@
+/* Ternimal.cpp */
+
 #include "stdafx.h"
 #include "Terminal.h"
 #include "Divider.h"

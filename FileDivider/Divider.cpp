@@ -1,3 +1,5 @@
+/* Divider.cpp */
+
 #include "stdafx.h"
 #include "Divider.h"
 #include "iTerminal.h"

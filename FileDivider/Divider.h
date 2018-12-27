@@ -1,9 +1,12 @@
+/* Divider.h */
+
 #pragma once
 #include "stdafx.h"
 
 class iTerminal;
 class Config;
 
+/* Manages input file splitting into .fdblock files*/
 class Divider {
 private:
 	/**
